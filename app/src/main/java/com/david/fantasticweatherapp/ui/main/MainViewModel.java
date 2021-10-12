@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.david.fantasticweatherapp.data.api.Resource;
 import com.david.fantasticweatherapp.data.models.response.WeatherResponse;
 import com.david.fantasticweatherapp.data.repository.WeatherRepository;
-import com.david.fantasticweatherapp.other.ErrorType;
+import com.david.fantasticweatherapp.data.models.local.enums.ErrorType;
 
 import javax.inject.Inject;
 

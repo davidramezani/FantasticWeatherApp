@@ -12,22 +12,114 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainActivity">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swRefresh"
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_width="match_parent">
+            android:scaleType="centerCrop"
+            android:src="@drawable/weahter_light_bg" />
+
+        <LinearLayout
+            android:id="@+id/llLocationCnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_location_vc"
+                app:tint="@color/white" />
 
             <TextView
-                android:id="@+id/tvHello"
+                android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello World!"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:text="Mashhad" />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llLocationCnt"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/tvTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_50sdp"
+                android:text="60" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_toRightOf="@id/tvTemp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp"
+                android:text="C" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_20sdp">
+
+                <LinearLayout
+                    android:id="@+id/llWeatherStatusCnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvWeatherStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_18sdp"
+                        android:text="Sunny" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Sunday, Aug 30th" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:src="@drawable/clear_sky"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/llWeatherStatusCnt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            >
+
+
+        </RelativeLayout>
 
 
     </RelativeLayout>

@@ -1,6 +1,6 @@
 package com.david.fantasticweatherapp.data.api;
 
-import com.david.fantasticweatherapp.other.ErrorType;
+import com.david.fantasticweatherapp.data.models.local.enums.ErrorType;
 
 public abstract class Resource<T> {
     private Resource() {

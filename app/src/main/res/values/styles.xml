@@ -1,0 +1,50 @@
+<resources>
+    <style name="AppBaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryLight</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryLight</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="bottomSheetStyle">@style/MyBottomDialogStyle</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppBaseTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout.PrimarySurface">
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabPadding">4dp</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="selectableItemBackground">@color/colorPrimary</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabTextColor">@color/grey_400</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabGravity">fill</item>
+    </style>
+
+    <style name="MyBottomDialogStyle" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowMinWidthMinor">0dp</item>
+        <item name="android:windowMinWidthMajor">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingBottom">0dp</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+    </style>
+
+</resources>

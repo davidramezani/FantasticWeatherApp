@@ -29,11 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mBinding.tvHello.setText(mainViewModel.getHelloString());
-        mBinding.swRefresh.setOnRefreshListener(() -> {
-            mBinding.swRefresh.setRefreshing(false);
-            logWeatherData();
-        });
         logWeatherData();
     }
 
@@ -42,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.getWeatherData().observe(this, weatherResponseResource -> {
             if (weatherResponseResource instanceof Resource.Success) {
                 WeatherResponse weatherData = ((Resource.Success<WeatherResponse>) weatherResponseResource).getData();
-                Log.i("WeatherTemp", String.valueOf(weatherData.main.temp));
+                mBinding.tvTemp.setText(String.valueOf((int) weatherData.main.temp));
+                mBinding.tvWeatherStatus.setText(weatherData.weather.get(0).main);
             } else if (weatherResponseResource instanceof Resource.Loading) {
             } else if (weatherResponseResource instanceof Resource.Error) {
             }
