@@ -9,11 +9,11 @@ import retrofit2.http.Query;
 
 public interface WeatherApi {
 
-    @GET("2.5/weather")
-    Observable<Response<WeatherResponse>> getCurrentWeatherData(
-            @Query("q") String query,
-            @Query("appid") String appId,
-            @Query("units") String units
-    );
+  @GET("2.5/weather")
+  Observable<Response<WeatherResponse>> getCurrentWeatherData(
+    @Query("q") String query,
+    @Query("appid") String appId,
+    @Query("units") String units
+  );
 
 }

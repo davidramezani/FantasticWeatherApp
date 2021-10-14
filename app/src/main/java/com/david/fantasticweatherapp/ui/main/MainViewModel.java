@@ -5,9 +5,9 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.david.fantasticweatherapp.data.api.Resource;
+import com.david.fantasticweatherapp.data.models.local.enums.ErrorType;
 import com.david.fantasticweatherapp.data.models.response.WeatherResponse;
 import com.david.fantasticweatherapp.data.repository.WeatherRepository;
-import com.david.fantasticweatherapp.data.models.local.enums.ErrorType;
 
 import javax.inject.Inject;
 
@@ -22,54 +22,54 @@ import retrofit2.Response;
 @HiltViewModel
 public class MainViewModel extends ViewModel {
 
-    private String helloString = "Welcome Back To Java";
-    private WeatherRepository weatherRepository;
+  private String helloString = "Welcome Back To Java";
+  private WeatherRepository weatherRepository;
 
-    //MutableData
-    private MutableLiveData<Resource<WeatherResponse>> weatherData;
+  //MutableData
+  private MutableLiveData<Resource<WeatherResponse>> weatherData;
 
-    public MutableLiveData<Resource<WeatherResponse>> getWeatherData() {
-        return weatherData;
-    }
+  public MutableLiveData<Resource<WeatherResponse>> getWeatherData() {
+    return weatherData;
+  }
 
-    @Inject
-    MainViewModel(SavedStateHandle handle, WeatherRepository weatherRepository) {
-        this.weatherRepository = weatherRepository;
-        weatherData = new MutableLiveData();
-    }
+  @Inject
+  MainViewModel(SavedStateHandle handle, WeatherRepository weatherRepository) {
+    this.weatherRepository = weatherRepository;
+    weatherData = new MutableLiveData();
+  }
 
-    public String getHelloString() {
-        return helloString;
-    }
+  public String getHelloString() {
+    return helloString;
+  }
 
-    public void getCurrentWeatherData(String query, String appId){
-        weatherRepository.getCurrentWeatherData(query,appId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<WeatherResponse>>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
+  public void getCurrentWeatherData(String query, String appId) {
+    weatherRepository.getCurrentWeatherData(query, appId)
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(new Observer<Response<WeatherResponse>>() {
+        @Override
+        public void onSubscribe(@NonNull Disposable d) {
 
-                    }
+        }
 
-                    @Override
-                    public void onNext(@NonNull Response<WeatherResponse> weatherResponseResponse) {
-                        if(weatherResponseResponse.isSuccessful()){
-                            WeatherResponse weatherResponse = weatherResponseResponse.body();
-                            weatherData.postValue(new Resource.Success<WeatherResponse>(weatherResponse));
-                        }
-                    }
+        @Override
+        public void onNext(@NonNull Response<WeatherResponse> weatherResponseResponse) {
+          if (weatherResponseResponse.isSuccessful()) {
+            WeatherResponse weatherResponse = weatherResponseResponse.body();
+            weatherData.postValue(new Resource.Success<WeatherResponse>(weatherResponse));
+          }
+        }
 
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        weatherData.postValue(new Resource.Error<WeatherResponse>(e.getMessage(), ErrorType.SERVER_ERROR));
-                    }
+        @Override
+        public void onError(@NonNull Throwable e) {
+          weatherData.postValue(new Resource.Error<WeatherResponse>(e.getMessage(), ErrorType.SERVER_ERROR));
+        }
 
-                    @Override
-                    public void onComplete() {
+        @Override
+        public void onComplete() {
 
-                    }
-                });
-    }
+        }
+      });
+  }
 
 }

@@ -10,14 +10,14 @@ import retrofit2.Response;
 
 public class WeatherRepository {
 
-    private WeatherApi weatherApi;
+  private WeatherApi weatherApi;
 
-    @Inject
-    public WeatherRepository(WeatherApi weatherApi){
-        this.weatherApi = weatherApi;
-    }
+  @Inject
+  public WeatherRepository(WeatherApi weatherApi) {
+    this.weatherApi = weatherApi;
+  }
 
-    public Observable<Response<WeatherResponse>> getCurrentWeatherData(String query, String appId) {
-        return weatherApi.getCurrentWeatherData(query,appId,"metric");
-    }
+  public Observable<Response<WeatherResponse>> getCurrentWeatherData(String query, String appId) {
+    return weatherApi.getCurrentWeatherData(query, appId, "metric");
+  }
 }
