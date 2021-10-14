@@ -25,8 +25,8 @@ public class WeatherResponse {
   @SerializedName("cod")
   public int cod;
 
-  @SerializedName("crood")
-  public Coord crood;
+  @SerializedName("coord")
+  public Coord coord;
   @SerializedName("weather")
   public List<Weather> weather;
   @SerializedName("main")

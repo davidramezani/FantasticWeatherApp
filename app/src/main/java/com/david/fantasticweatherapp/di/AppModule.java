@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 @InstallIn(SingletonComponent.class)
-final class AppModule {
+public final class AppModule {
 
   @Provides
   static String provideBaseUrl() {
@@ -34,7 +34,7 @@ final class AppModule {
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
     logging.setLevel(HttpLoggingInterceptor.Level.BODY);
     return new OkHttpClient().newBuilder()
-      .callTimeout(50, TimeUnit.SECONDS)
+      .callTimeout(20, TimeUnit.SECONDS)
       .connectTimeout(20, TimeUnit.SECONDS)
       .readTimeout(15, TimeUnit.SECONDS)
       .writeTimeout(15, TimeUnit.SECONDS)
@@ -75,5 +75,7 @@ final class AppModule {
   static WeatherApi provideApi(Retrofit retrofit) {
     return retrofit.create(WeatherApi.class);
   }
+
+
 
 }
