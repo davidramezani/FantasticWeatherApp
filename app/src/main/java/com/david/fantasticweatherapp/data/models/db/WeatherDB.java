@@ -1,6 +1,7 @@
 package com.david.fantasticweatherapp.data.models.db;
 
 import androidx.room.Database;
+import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.david.fantasticweatherapp.data.models.db.converters.WeatherCloudsConverter;
@@ -21,6 +22,6 @@ import com.david.fantasticweatherapp.data.models.response.WeatherResponse;
     WeatherWindConverter.class,
     WeatherSysConverter.class
   })
-public abstract class WeatherDB {
+public abstract class WeatherDB extends RoomDatabase {
   public abstract WeatherDao weatherDao();
 }
