@@ -10,9 +10,10 @@ import com.david.fantasticweatherapp.data.models.db.converters.WeatherCroodConve
 import com.david.fantasticweatherapp.data.models.db.converters.WeatherMainConverter;
 import com.david.fantasticweatherapp.data.models.db.converters.WeatherSysConverter;
 import com.david.fantasticweatherapp.data.models.db.converters.WeatherWindConverter;
+import com.david.fantasticweatherapp.data.models.db.tables.LocationData;
 import com.david.fantasticweatherapp.data.models.response.WeatherResponse;
 
-@Database(entities = {WeatherResponse.class}, version = 1)
+@Database(entities = {WeatherResponse.class, LocationData.class}, version = 1)
 @TypeConverters(
   {
     WeatherCroodConverter.class,

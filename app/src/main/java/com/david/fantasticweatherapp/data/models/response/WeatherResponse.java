@@ -20,6 +20,8 @@ public class WeatherResponse {
   public int dt;
   @SerializedName("timezone")
   public int timezone;
+  @SerializedName("locationName")
+  public String locationName;
   @SerializedName("name")
   public String name;
   @SerializedName("cod")

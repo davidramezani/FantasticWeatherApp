@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dialogBg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="Location Info"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputCity"
+            style="@style/Widget.MaterialComponents.TimePicker.Display.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/shape_shop_search"
+            android:hint="City"
+            android:padding="@dimen/_1sdp"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_10sdp"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@android:color/transparent"
+            app:boxStrokeErrorColor="@color/red_400"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_edittext"
+                android:gravity="start"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxHeight="@dimen/_100sdp"
+                android:maxLines="1"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textCursorDrawable="@drawable/shape_edittext_cursor"
+                android:textSize="@dimen/_12sdp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLat"
+            style="@style/Widget.MaterialComponents.TimePicker.Display.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/shape_shop_search"
+            android:hint="Latitude"
+            android:padding="@dimen/_1sdp"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_10sdp"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@android:color/transparent"
+            app:boxStrokeErrorColor="@color/red_400"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_edittext"
+                android:gravity="start"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxHeight="@dimen/_100sdp"
+                android:maxLines="1"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textCursorDrawable="@drawable/shape_edittext_cursor"
+                android:textSize="@dimen/_12sdp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLon"
+            style="@style/Widget.MaterialComponents.TimePicker.Display.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/shape_shop_search"
+            android:hint="Longitude"
+            android:padding="@dimen/_1sdp"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_10sdp"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@android:color/transparent"
+            app:boxStrokeErrorColor="@color/red_400"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_edittext"
+                android:gravity="start"
+                android:imeOptions="actionGo"
+                android:inputType="numberDecimal"
+                android:maxHeight="@dimen/_100sdp"
+                android:maxLines="1"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textCursorDrawable="@drawable/shape_edittext_cursor"
+                android:textSize="@dimen/_12sdp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="Save"
+            android:textColor="@color/white"
+            app:background="@color/btnColor"
+            app:backgroundTint="@color/btnColor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp" />
+
+    </LinearLayout>
+</layout>

@@ -4,17 +4,24 @@ import android.util.Log;
 
 import com.david.fantasticweatherapp.data.api.WeatherApi;
 import com.david.fantasticweatherapp.data.models.db.WeatherDB;
+import com.david.fantasticweatherapp.data.models.db.tables.LocationData;
 import com.david.fantasticweatherapp.data.models.response.WeatherResponse;
+import com.david.fantasticweatherapp.other.Constants;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Action;
 import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 import retrofit2.Response;
 
 public class WeatherRepository {
@@ -30,8 +37,8 @@ public class WeatherRepository {
         this.weatherDB = weatherDB;
     }
 
-    public Observable<Response<WeatherResponse>> getCurrentWeatherData(String query, String appId) {
-        return weatherApi.getCurrentWeatherData(query, appId, "metric");
+    public Observable<Response<WeatherResponse>> getCurrentWeatherData(String query) {
+        return weatherApi.getCurrentWeatherData(query, Constants.WEATHER_API_ID, "metric");
     }
 
     public Flowable<List<WeatherResponse>> getWeatherData(String cityName) {
@@ -40,16 +47,26 @@ public class WeatherRepository {
 
     public void updateWeatherDataDb(WeatherResponse weatherResponse) {
         weatherDB.weatherDao().insertWeatherData(weatherResponse).subscribeOn(Schedulers.io())
-            .subscribe(new Action() {
-                @Override
-                public void run() throws Throwable {
-                    Log.i("insertProcess", "Success");
-                }
-            }, new Consumer<Throwable>() {
-                @Override
-                public void accept(Throwable throwable) throws Throwable {
-                    Log.i("insertProcess", "Failed");
-                }
-            });
+            .subscribe(
+                () -> Log.i("insertProcess", "Success"),
+                throwable -> Log.i("insertProcess", "Failed")
+            );
+    }
+
+    public Flowable<List<LocationData>> getLocation() {
+        return weatherDB.weatherDao().getLocationData();
+    }
+
+    public void setDefaultLocation() {
+        LocationData defLocation = new LocationData(1, Constants.DefaultCity, Constants.DefaultLat, Constants.DefaultLon);
+        weatherDB.weatherDao().insertLocation(defLocation)
+            .subscribeOn(Schedulers.io())
+            .subscribe();
+    }
+
+    public void updateLocation(LocationData locationData) {
+        weatherDB.weatherDao().insertLocation(locationData)
+            .subscribeOn(Schedulers.io())
+            .subscribe();
     }
 }

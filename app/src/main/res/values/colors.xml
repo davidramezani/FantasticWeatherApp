@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#772321</color>
+    <color name="primaryColor">#233a44</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="splashBg">#772321</color>
+    <color name="splashBg">#233a44</color>
     <color name="bgColor">#fafafa</color>
     <color name="bgColorDark">#E0E0E0</color>
     <color name="bgOverlay">#22000000</color>
+    <color name="dialogBg">#233a44</color>
+    <color name="btnColor">#3f578b</color>
 
-    <color name="colorPrimary">#772321</color>
-    <color name="colorPrimaryLight">#a1312f</color>
-    <color name="colorPrimaryDark">#63201e</color>
-    <color name="colorSecondary">#a1312f</color>
+    <color name="colorPrimary">#233a44</color>
+    <color name="colorPrimaryLight">#284552</color>
+    <color name="colorPrimaryDark">#22343c</color>
+    <color name="colorSecondary">#284552</color>
     <color name="colorSecondaryLight">@color/grey_600</color>
     <color name="colorSecondaryDark">@color/grey_900</color>
     <color name="colorBackground">#f2f2f2</color>
     <color name="colorSurface">#FFFFFF</color>
-    <color name="colorError">#772321</color>
+    <color name="colorError">#233a44</color>
     <color name="colorOnPrimary">#000000</color>
     <color name="colorOnSecondary">@color/grey_800</color>
     <color name="colorOnBackground">#000000</color>
