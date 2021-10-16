@@ -138,7 +138,7 @@
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:src="@drawable/clear_sky"
+                    android:src="@drawable/clearsky"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/llWeatherStatusCnt"
                     app:layout_constraintStart_toStartOf="parent"

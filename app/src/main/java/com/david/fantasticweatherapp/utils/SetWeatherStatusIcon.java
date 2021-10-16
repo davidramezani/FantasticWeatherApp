@@ -18,19 +18,19 @@ public final class SetWeatherStatusIcon {
         if (weatherType != null) {
             switch (weatherType) {
                 case CLEAR:
-                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.clear_sky));
+                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.clearsky));
                     break;
                 case FEW_CLOUDS:
-                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.few_clouds));
+                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.fewclouds));
                     break;
                 case SCATTERED_CLOUDS:
-                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.scattered_clouds));
+                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.scatteredclouds));
                     break;
                 case BROKEN_CLOUDS:
-                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.broken_clouds));
+                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.brokenclouds));
                     break;
                 case SHOWER_RAIN:
-                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.shower_rain));
+                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.showerrain));
                     break;
                 case RAIN:
                 case LIGHT_RAIN:
@@ -45,7 +45,7 @@ public final class SetWeatherStatusIcon {
                 case MIST:
                     imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.mist));
                 case CLOUDS:
-                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.overcast_clouds));
+                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.overcastclouds));
                     break;
             }
         }
@@ -57,19 +57,19 @@ public final class SetWeatherStatusIcon {
         if (weatherType != null) {
             switch (weatherType) {
                 case CLEAR:
-                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.clear_sky);
+                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.clearsky);
                     break;
                 case FEW_CLOUDS:
-                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.few_clouds);
+                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.fewclouds);
                     break;
                 case SCATTERED_CLOUDS:
-                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.scattered_clouds);
+                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.scatteredclouds);
                     break;
                 case BROKEN_CLOUDS:
-                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.broken_clouds);
+                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.brokenclouds);
                     break;
                 case SHOWER_RAIN:
-                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.shower_rain);
+                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.showerrain);
                     break;
                 case RAIN:
                     views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.rain);
@@ -83,7 +83,7 @@ public final class SetWeatherStatusIcon {
                 case MIST:
                     views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.mist);
                 case CLOUDS:
-                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.overcast_clouds);
+                    views.setImageViewResource(R.id.ivWidgetWeatherStatus, R.drawable.overcastclouds);
                     break;
             }
         }
