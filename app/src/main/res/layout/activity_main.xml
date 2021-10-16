@@ -13,6 +13,10 @@
             name="wrongLocation"
             type="Boolean" />
 
+        <variable
+            name="internetProblem"
+            type="Boolean" />
+
         <import type="android.view.View" />
 
     </data>
@@ -105,16 +109,32 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/_18sdp" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sunday, Aug 30th"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/txtHumidityValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:src="@drawable/humidity" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/ivWeatherStatus"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
@@ -162,13 +182,13 @@
                 android:id="@+id/llErrorStatusCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
                 android:background="@drawable/shape_rounded_red"
+                android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:paddingVertical="@dimen/_5sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                android:visibility="@{wrongLocation ? View.VISIBLE : View.GONE}">
+                android:visibility="@{(wrongLocation == true &amp;&amp; internetProblem == false &amp;&amp; loadingData == false) ? View.VISIBLE : View.GONE}">
 
                 <ImageView
                     android:id="@+id/ivErrorStatus"
@@ -177,7 +197,7 @@
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_warning_vc"
                     app:tint="@color/white"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tvError"
@@ -188,11 +208,44 @@
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
-                    tools:visibility="visible"
-                    />
+                    tools:visibility="visible" />
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llInternetProblemCnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="@drawable/shape_rounded_red"
+                android:backgroundTint="@color/amber_200"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:visibility="@{(internetProblem &amp;&amp; wrongLocation == false &amp;&amp; loadingData == false) ? View.VISIBLE : View.GONE}">
+
+                <ImageView
+                    android:id="@+id/ivInternetProblem"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_refresh_vc"
+                    app:tint="@color/white"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvInternetProblem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:text="Check your internet connection"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 

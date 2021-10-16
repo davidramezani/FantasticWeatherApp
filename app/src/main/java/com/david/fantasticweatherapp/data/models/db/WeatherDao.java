@@ -17,7 +17,7 @@ import io.reactivex.rxjava3.core.Single;
 @Dao
 public interface WeatherDao {
 
-  @Query("SELECT * FROM WeatherData WHERE locationName=:cityName")
+  @Query("SELECT * FROM WeatherData WHERE locationName=:cityName or name=:cityName")
   Flowable<List<WeatherResponse>> getWeatherData(String cityName);
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)

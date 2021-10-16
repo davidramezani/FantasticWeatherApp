@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Action;
@@ -39,6 +40,10 @@ public class WeatherRepository {
 
     public Observable<Response<WeatherResponse>> getCurrentWeatherData(String query) {
         return weatherApi.getCurrentWeatherData(query, Constants.WEATHER_API_ID, "metric");
+    }
+
+    public Single<Response<WeatherResponse>> getSingleWeatherData(String query) {
+        return weatherApi.getSingleWeatherData(query, Constants.WEATHER_API_ID, "metric");
     }
 
     public Flowable<List<WeatherResponse>> getWeatherData(String cityName) {

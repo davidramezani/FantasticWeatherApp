@@ -1,9 +1,11 @@
 package com.david.fantasticweatherapp.ui.main;
 
 import android.app.Application;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.david.fantasticweatherapp.data.api.Resource;
 import com.david.fantasticweatherapp.data.models.db.tables.LocationData;
@@ -11,6 +13,7 @@ import com.david.fantasticweatherapp.data.models.local.enums.ErrorType;
 import com.david.fantasticweatherapp.data.models.response.ErrorResponse;
 import com.david.fantasticweatherapp.data.models.response.WeatherResponse;
 import com.david.fantasticweatherapp.data.repository.WeatherRepository;
+import com.david.fantasticweatherapp.services.WeatherAppWidgetProvider;
 import com.david.fantasticweatherapp.ui.BaseViewModel;
 
 import org.reactivestreams.Subscription;
@@ -110,7 +113,9 @@ public class MainViewModel extends BaseViewModel {
 
                 @Override
                 public void onNext(List<WeatherResponse> weatherResponses) {
-                    flowWeatherData.postValue(weatherResponses);
+                    if(weatherResponses.size() > 0) {
+                        flowWeatherData.postValue(weatherResponses);
+                    }
                 }
 
                 @Override
@@ -129,44 +134,55 @@ public class MainViewModel extends BaseViewModel {
 
     public void updateCurrentWeatherData() {
         if (liveLocationData.getValue() != null) {
-            weatherRepository.getCurrentWeatherData(liveLocationData.getValue().cityName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<WeatherResponse>>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        weatherDataUpdateStatus.postValue(new Resource.Loading<>());
-                        compositeDisposable.add(d);
-                    }
 
-                    @Override
-                    public void onNext(@NonNull Response<WeatherResponse> weatherResponseResponse) {
-                        weatherDataUpdateStatus.postValue(new Resource.Success<>(true));
-                        if (weatherResponseResponse.isSuccessful()) {
-                            WeatherResponse weatherResponse = weatherResponseResponse.body();
-                            weatherResponse.locationName = defaultLocation.cityName;
-                            weatherRepository.updateWeatherDataDb(weatherResponse);
-                        } else {
-                            ErrorResponse errorResponse = getErrorResponse(weatherResponseResponse);
-                            weatherDataUpdateStatus.postValue(new Resource.Error<>(errorResponse.message, ErrorType.NOT_FOUND));
+            if(hasInternetConnection()) {
+                weatherRepository.getCurrentWeatherData(liveLocationData.getValue().cityName)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<Response<WeatherResponse>>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+                            weatherDataUpdateStatus.postValue(new Resource.Loading<>());
+                            compositeDisposable.add(d);
                         }
-                    }
 
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        weatherDataUpdateStatus.postValue(new Resource.Error<>(e.getMessage(), ErrorType.SERVER_ERROR));
-                    }
+                        @Override
+                        public void onNext(@NonNull Response<WeatherResponse> weatherResponseResponse) {
+                            weatherDataUpdateStatus.postValue(new Resource.Success<>(true));
+                            if (weatherResponseResponse.isSuccessful()) {
+                                WeatherResponse weatherResponse = weatherResponseResponse.body();
+                                weatherResponse.locationName = defaultLocation.cityName;
+                                weatherRepository.updateWeatherDataDb(weatherResponse);
+                                updateWeatherWidget(weatherResponse.name);
+                            } else {
+                                ErrorResponse errorResponse = getErrorResponse(weatherResponseResponse);
+                                weatherDataUpdateStatus.postValue(new Resource.Error<>(errorResponse.message, ErrorType.NOT_FOUND));
+                            }
+                        }
 
-                    @Override
-                    public void onComplete() {
-                    }
-                });
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            weatherDataUpdateStatus.postValue(new Resource.Error<>(e.getMessage(), ErrorType.SERVER_ERROR));
+                        }
+
+                        @Override
+                        public void onComplete() {
+                        }
+                    });
+            } else {
+                weatherDataUpdateStatus.postValue(new Resource.Error<>("", ErrorType.NETWORK_ERROR));
+            }
         }
     }
 
-    public void updateLocation(LocationData locationData) {
-        locationData.cityName = locationData.cityName.toLowerCase();
-        weatherRepository.updateLocation(locationData);
+    private void updateWeatherWidget(String cityName) {
+        Intent intent = new Intent(getApplication(), WeatherAppWidgetProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int[] ids = AppWidgetManager.getInstance(getApplication())
+            .getAppWidgetIds(new ComponentName(getApplication(), WeatherAppWidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        intent.putExtra("CityName", cityName);
+        getApplication().sendBroadcast(intent);
     }
 
     @Override

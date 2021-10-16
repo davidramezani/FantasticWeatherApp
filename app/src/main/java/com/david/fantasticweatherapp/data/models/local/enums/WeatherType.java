@@ -1,17 +1,19 @@
 package com.david.fantasticweatherapp.data.models.local.enums;
 
 public enum WeatherType {
+  CLOUDS("overcast clouds"),
   CLEAR("clear sky"),
   FEW_CLOUDS("few clouds"),
   SCATTERED_CLOUDS("scattered clouds"),
   BROKEN_CLOUDS("broken clouds"),
   SHOWER_RAIN("shower rain"),
   RAIN("rain"),
+  LIGHT_RAIN("light rain"),
   THUNDERSTORM("thunderstorm"),
   SNOW("snow"),
   MIST("mist");
 
-  private String value;
+  private final String value;
 
   WeatherType(final String value) {
     this.value = value;

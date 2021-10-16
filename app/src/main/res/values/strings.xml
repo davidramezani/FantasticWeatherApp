@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FantasticWeatherApp</string>
+    <string name="example_appwidget_description">Show Weather Info</string>
 </resources>
